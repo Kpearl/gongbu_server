@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,13 +13,14 @@ import com.example.demo.service.UserService;
 @RestController
 public class UserController {
 
-	private final UserService userService;
+	@Inject UserService userService;
 	
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
 	
+	// 기존 페이지
 	@GetMapping
 	public String getAllUser() {
 		return "viewtest";
@@ -25,8 +28,12 @@ public class UserController {
 	
 	// 회원가입 페이지
 	@PostMapping
-	public String insertUser(User user) {
+	public void insertUser(User user) {
 		userService.insertUser(user);
-		return user.pintUser();
+	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "test test test";
 	}
 }
