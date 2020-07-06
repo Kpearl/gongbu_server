@@ -1,8 +1,8 @@
-package com.example.demo.dao;
+package com.gongbu.bootJPA.service;
 
-import com.example.demo.model.User;
+import com.gongbu.bootJPA.model.User;
 
-public interface UserDAO {
+public interface UserService {
 	public void insertUser(User user);
 	public Boolean searchUser(String id);
 	public Boolean updateUser(User user, User newUser);

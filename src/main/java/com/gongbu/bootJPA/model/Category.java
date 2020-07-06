@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.gongbu.bootJPA.model;
 
 public class Category {
 	private String id; //카데고리 아이디

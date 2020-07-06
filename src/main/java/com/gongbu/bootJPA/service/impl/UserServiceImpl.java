@@ -1,12 +1,12 @@
-package com.example.demo.service.impl;
+package com.gongbu.bootJPA.service.impl;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.UserDAO;
-import com.example.demo.model.User;
-import com.example.demo.service.UserService;
+import com.gongbu.bootJPA.dao.UserDAO;
+import com.gongbu.bootJPA.model.User;
+import com.gongbu.bootJPA.service.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{

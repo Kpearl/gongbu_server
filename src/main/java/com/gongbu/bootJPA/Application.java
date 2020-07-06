@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.gongbu.bootJPA;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

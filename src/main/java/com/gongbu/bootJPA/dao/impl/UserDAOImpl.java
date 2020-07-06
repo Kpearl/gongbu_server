@@ -1,10 +1,10 @@
-package com.example.demo.dao.impl;
+package com.gongbu.bootJPA.dao.impl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.dao.UserDAO;
-import com.example.demo.model.User;
+import com.gongbu.bootJPA.dao.UserDAO;
+import com.gongbu.bootJPA.model.User;
 import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Basic;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;

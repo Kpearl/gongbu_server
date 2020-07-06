@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.gongbu.bootJPA.model;
 
 public class Page {
 	private int count; //화면 출력 갯수

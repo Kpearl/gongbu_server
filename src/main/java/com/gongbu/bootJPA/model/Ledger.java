@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.gongbu.bootJPA.model;
 
 import java.sql.Date;
 
