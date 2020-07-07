@@ -15,7 +15,7 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public String joinUser(Users user) {
 		userRepository.save(user);
-		return "join-user";
+		return "index";
 	}
 
 	@Override
