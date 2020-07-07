@@ -1,28 +1,29 @@
-package com.gongbu.bootJPA.User;
+package com.gongbu.bootJPA.Users;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class User {
+public class Users {
 	
-	@Id
-	private String id;
+	@Id @GeneratedValue
+	private Long id;
 	
 	private String name;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
