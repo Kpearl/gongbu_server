@@ -10,30 +10,30 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gongbu.bootJPA.entity.Users;
 import com.gongbu.bootJPA.service.UsersService;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes=Application.class)
+//@ContextConfiguration(classes=Application.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class ApplicationTests {
 	
+	//@Autowired
+	//private ApplicationContext context;
+	
 	@Autowired
-	private ApplicationContext context;
+	private UsersService service;
 	
 	@Before
 	public static void before() {
 		
 	}
 	
-	@Test
+	//@Test
 	public void joinTest() throws Exception {
-		UsersService service = context.getBean("UsersService", UsersService.class);
 		Users user = new Users();
 		
 		user.setId("junit");
@@ -45,9 +45,8 @@ class ApplicationTests {
 		assertThat(user.getName(), is(user.getName()));
 	}
 	
-	
+	@Test
 	public void getTest() throws Exception {
-		UsersService service = context.getBean("UsersService", UsersService.class);
 		Users user = new Users();
 		
 		user = service.getUser("21");
