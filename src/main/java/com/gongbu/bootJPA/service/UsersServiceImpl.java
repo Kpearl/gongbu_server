@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.gongbu.bootJPA.entity.Users;
 import com.gongbu.bootJPA.repository.UsersRepository;
 
-@Service
+@Service("UsersService")
 public class UsersServiceImpl implements UsersService{
 	
 	@Autowired
