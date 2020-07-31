@@ -39,7 +39,7 @@ class ApplicationTests {
 		user.setId("junit");
 		user.setName("name");
 		
-		service.joinUser(user);
+		service.registerUser(user);
 		
 		assertThat(user.getId(), is(user.getId()));
 		assertThat(user.getName(), is(user.getName()));
