@@ -13,13 +13,26 @@ public class UsersServiceImpl implements UsersService{
 	UsersRepository userRepository;
 	
 	@Override
-	public String joinUser(Users user) {
+	public Boolean login(String id, String pw) {
+		try {
+			Users user = userRepository.findById(id).orElse(new Users());
+			return user.getId().equals(id) && user.getPw().equals(pw);
+		} catch(NullPointerException e) {
+			return false;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	}
+	
+	@Override
+	public String registerUser(Users user) {
 		userRepository.save(user);
 		return "index";
 	}
 
 	@Override
 	public Users getUser(String id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElse(new Users());
 	}
 }

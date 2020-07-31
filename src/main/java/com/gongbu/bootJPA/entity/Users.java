@@ -14,6 +14,9 @@ public class Users {
 	private String id;
 	
 	private String name;
+	private String pw;
+	private String phone;
+	private Date birth; 
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
@@ -32,6 +35,30 @@ public class Users {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPw() {
+		return pw;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Date getBirth() {
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 
 	public Date getCreated() {
