@@ -3,6 +3,7 @@ package com.gongbu.bootJPA.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,12 +19,12 @@ public class UsersController {
 	private UsersService usersService;
 	
 	@PostMapping("/login")
-	public boolean loginUser(String id, String pw) {
+	public Boolean loginUser(String id, String pw) {
 		return usersService.login(id, pw);
 	}
 	
 	@PostMapping("/register")
-	public String registerUser(Users user) {
+	public Boolean registerUser(Users user) {
 		System.out.println(user.getId());
 		Users users = new Users();
 		users.setId(user.getId());
@@ -33,9 +34,7 @@ public class UsersController {
 		users.setBirth(user.getBirth());
 		users.setCreated(new Date());
 		
-		usersService.registerUser(users);
-		
-		return "join-users";
+		return usersService.registerUser(users);
 	}
 	
 	@PostMapping("/get")
@@ -43,8 +42,13 @@ public class UsersController {
 		return usersService.getUser(id);
 	}
 	
-	@PostMapping("check")
+	@GetMapping("/check")
 	public Boolean check() {
 		return true;
+	}
+	
+	@PostMapping("/logout")
+	public Boolean logout() {
+		return null;
 	}
 }

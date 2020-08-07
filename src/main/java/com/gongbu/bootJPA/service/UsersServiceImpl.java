@@ -26,9 +26,13 @@ public class UsersServiceImpl implements UsersService{
 	}
 	
 	@Override
-	public String registerUser(Users user) {
-		userRepository.save(user);
-		return "index";
+	public Boolean registerUser(Users user) {
+		if(userRepository.findById(user.getId()).orElse(null) == null) {
+			userRepository.save(user);
+		} else {
+			return false;
+		}
+		return true;
 	}
 
 	@Override

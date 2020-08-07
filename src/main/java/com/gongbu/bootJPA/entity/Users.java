@@ -16,7 +16,7 @@ public class Users {
 	private String name;
 	private String pw;
 	private String phone;
-	private Date birth; 
+	private String birth; 
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
@@ -53,11 +53,11 @@ public class Users {
 		this.phone = phone;
 	}
 
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

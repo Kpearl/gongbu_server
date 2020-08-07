@@ -4,6 +4,6 @@ import com.gongbu.bootJPA.entity.Users;
 
 public interface UsersService {
 	public Boolean login(String id, String pw);
-	public String registerUser(Users user);
+	public Boolean registerUser(Users user);
 	public Users getUser(String id);
 }
