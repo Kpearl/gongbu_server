@@ -12,8 +12,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.gongbu.bootJPA.entity.Users;
-import com.gongbu.bootJPA.service.UsersService;
+import com.gongbu.bootJPA.entity.UserInfo;
+import com.gongbu.bootJPA.service.UserInfoService;
 
 @RunWith(SpringRunner.class)
 //@ContextConfiguration(classes=Application.class)
@@ -25,7 +25,7 @@ class ApplicationTests {
 	//private ApplicationContext context;
 	
 	@Autowired
-	private UsersService service;
+	private UserInfoService service;
 	
 	@Before
 	public static void before() {
@@ -34,7 +34,7 @@ class ApplicationTests {
 	
 	//@Test
 	public void joinTest() throws Exception {
-		Users user = new Users();
+		UserInfo user = new UserInfo();
 		
 		user.setId("junit");
 		user.setName("name");
@@ -47,7 +47,7 @@ class ApplicationTests {
 	
 	@Test
 	public void getTest() throws Exception {
-		Users user = new Users();
+		UserInfo user = new UserInfo();
 		
 		user = service.getUser("21");
 		assertEquals(user.getName(), "test");

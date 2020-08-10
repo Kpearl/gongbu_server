@@ -21,7 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Boolean setCategory(Category cat) {
-		if(categoryRepository.findById(cat.getId()).orElse(new Category()) != null) {
+		if(categoryRepository.findById(cat.getKey()).orElse(new Category()) != null) {
 			categoryRepository.save(cat);
 			return true;
 		} else {

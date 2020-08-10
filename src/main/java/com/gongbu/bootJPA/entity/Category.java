@@ -2,22 +2,25 @@ package com.gongbu.bootJPA.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "category_group")
 public class Category {
 	
 	@Id
-	private String id;
+	private String num;
 	
 	private String key;
 	private String value;
 	
-	public String getId() {
-		return id;
+	public String getNum() {
+		return num;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setNum(String num) {
+		this.num = num;
 	}
+	
 	public String getKey() {
 		return key;
 	}
