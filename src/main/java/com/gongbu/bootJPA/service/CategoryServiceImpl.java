@@ -14,19 +14,19 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	@Override
-	public List<Category> getCategoryList(String id) {
-		return (List<Category>) categoryRepository.findById(id).orElse(new Category());
-	}
+//	@Override
+//	public List<Category> getCategoryList(String id) {
+//		return (List<Category>) categoryRepository.findById(id).orElse(new Category());
+//	}
 
-	@Override
-	public Boolean setCategory(Category cat) {
-		if(categoryRepository.findById(cat.getKey()).orElse(new Category()) != null) {
-			categoryRepository.save(cat);
-			return true;
-		} else {
-			return null;
-		}
-	}
+//	@Override
+//	public Boolean setCategory(Category cat) {
+//		if(categoryRepository.findById(cat.getKey()).orElse(new Category()) != null) {
+//			categoryRepository.save(cat);
+//			return true;
+//		} else {
+//			return null;
+//		}
+//	}
 
 }

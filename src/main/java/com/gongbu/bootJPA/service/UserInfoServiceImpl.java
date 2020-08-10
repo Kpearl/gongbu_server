@@ -15,7 +15,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	@Override
 	public Boolean login(String id, String password) {
 		UserInfo user = userRepository.findById(id).orElse(new UserInfo());
-		if(user.getId().equals(id) && user.getPassword().equals(password)) {
+		if(user != null && user.getId().equals(id) && user.getPassword().equals(password)) {
 			return true;
 		}
 		return false;
