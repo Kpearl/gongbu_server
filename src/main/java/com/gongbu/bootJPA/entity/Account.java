@@ -18,6 +18,7 @@ public class Account {
 	private String how;
 	private String why;
 	private String who;
+	private int state;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date buy_when;
@@ -76,5 +77,13 @@ public class Account {
 
 	public void setBuy_when(Date buy_when) {
 		this.buy_when = buy_when;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 }

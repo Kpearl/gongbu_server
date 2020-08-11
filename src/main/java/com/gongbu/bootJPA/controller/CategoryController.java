@@ -17,13 +17,13 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 
-//	@PostMapping("/set")
-//	public Boolean setCategory(Category cat) {
-//		return categoryService.setCategory(cat);
-//	}
+	@PostMapping("/setCategory")
+	public Boolean setCategory(Category cat) {
+		return categoryService.setCategory(cat);
+	}
 	
-//	@PostMapping("/get")
-//	public List<Category> getCategory(String id) {
-//		return categoryService.getCategoryList(id);
-//	}
+	@PostMapping("/getCategory")
+	public List<Category> getCategory(String id) {
+		return categoryService.getCategoryList(id);
+	}
 }
