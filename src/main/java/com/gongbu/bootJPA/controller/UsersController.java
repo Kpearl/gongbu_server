@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gongbu.bootJPA.entity.UserInfo;
-import com.gongbu.bootJPA.service.UserInfoService;
+import com.gongbu.bootJPA.entity.Users;
+import com.gongbu.bootJPA.service.UserService;
 
 @RestController
 @RequestMapping("/users/*")
 public class UsersController {
 	
 	@Autowired
-	private UserInfoService usersInfoService;
+	private UserService usersInfoService;
 	
 	@PostMapping("/login")
 	public Boolean loginUser(String id, String password) {
@@ -24,21 +24,20 @@ public class UsersController {
 	}
 	
 	@PostMapping("/register")
-	public Boolean registerUser(UserInfo user) {
-		UserInfo users = new UserInfo();
+	public Boolean registerUser(Users user) {
+		Users users = new Users();
 		users.setId(user.getId());
 		users.setPassword(user.getPassword());
 		users.setName(user.getName());
 		users.setPhone(user.getPhone());
 		users.setEmail(user.getEmail());
 		users.setBirth(user.getBirth());
-		users.setCreated(new Date());
 		
 		return usersInfoService.registerUser(users);
 	}
 	
 	@PostMapping("/get")
-	public UserInfo getUser(String user_id) {
+	public Users getUser(String user_id) {
 		return usersInfoService.getUser(user_id);
 	}
 	

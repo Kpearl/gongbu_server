@@ -1,32 +1,38 @@
 package com.gongbu.bootJPA.entity;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "user_info")
-public class UserInfo {
+public class Users {
 	
-	@Id
-	@Column(name = "user_id")
+	@Id @GeneratedValue
+	@Column(name = "USER_ID")
 	private String id;
 	
 	private String password;
+	private String nickName;
 	private String name;
 	private String phone;
 	private String birth;
 	private String email;
-	private String account_g_id;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created;
 	
+//	@OneToMany(mappedBy = "USERS")
+//	private List<UserAccount> account = new ArrayList<>();
+//	public List<UserAccount> getAccount() {
+//		return account;
+//	}
+//	
+//	public void setAccount(List<UserAccount> account) {
+//		this.account = account;
+//	}
+//	
 	public String getId() {
 		return id;
 	}
@@ -34,14 +40,7 @@ public class UserInfo {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getAccount_g_id() {
-		return account_g_id;
-	}
-
-	public void setAccount_g_id(String account_g_id) {
-		this.account_g_id = account_g_id;
-	}
+	
 
 	public String getName() {
 		return name;
@@ -83,12 +82,11 @@ public class UserInfo {
 		this.email = email;
 	}
 
-	public Date getCreated() {
-		return created;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}	
 }
