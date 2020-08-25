@@ -8,44 +8,48 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class Post {
-	
-	
-	@Id @GeneratedValue
+
+	@Id	@GeneratedValue
 	@Column(name = "POST_ID")
 	private Long id;
-	
+
 	private String title;
 	private String content;
 	private String cost;
 	private String consumer;
 	
-//	private Category category;
-//	public Category getCategory() {
-//		return category;
-//	}
-//	
-//	public void setCategory(Category category) {
-//		this.category = category;
-//	}
+	@OneToOne
+	@JoinColumn(name = "CATEGORY_ID")
+	private Category category;
 	
-//	@ManyToOne
-//	@JoinColumn(name="USER_ID")
-//	private Account account;
-//	public Account getAccount() {
-//		return account;
-//	}
-//	
-//	public void setAccount(Account account) {
-//		this.account = account;
-//	}
-	
+	@ManyToOne
+	@JoinColumn(name = "USER_ID")
+	private Account account;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date purchaseDate;
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	public Long getId() {
 		return id;
@@ -87,14 +91,13 @@ public class Post {
 		this.consumer = consumer;
 	}
 
-
 	public Date getPurchaseDate() {
 		return purchaseDate;
 	}
 
 	public void setPurchaseDate(Date purchaseDate) {
 		this.purchaseDate = purchaseDate;
-		
+
 	}
 
 }

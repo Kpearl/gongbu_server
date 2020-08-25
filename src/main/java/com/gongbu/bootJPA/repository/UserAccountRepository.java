@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gongbu.bootJPA.entity.UserAccount;
 
-public interface UserAccountRepository extends JpaRepository<UserAccount, String> {
+public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
 
 }

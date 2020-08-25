@@ -1,6 +1,5 @@
 package com.gongbu.bootJPA.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,16 +22,17 @@ public class Users {
 	private String birth;
 	private String email;
 	
-//	@OneToMany(mappedBy = "USERS")
-//	private List<UserAccount> account = new ArrayList<>();
-//	public List<UserAccount> getAccount() {
-//		return account;
-//	}
-//	
-//	public void setAccount(List<UserAccount> account) {
-//		this.account = account;
-//	}
-//	
+	@OneToMany
+	private List<UserAccount> account;
+	
+	public List<UserAccount> getAccount() {
+		return account;
+	}
+	
+	public void setAccount(List<UserAccount> account) {
+		this.account = account;
+	}
+	
 	public String getId() {
 		return id;
 	}

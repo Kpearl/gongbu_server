@@ -15,7 +15,7 @@ public class UserAccount {
 	@Id	@GeneratedValue
 	@Column(name = "USER_ACCOUNT_ID")
 	private Long id;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")
 	private Users user;

@@ -3,7 +3,6 @@ package com.gongbu.bootJPA.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,17 +23,19 @@ public class Account {
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")
 	private Users user;
+	
+	private String name;
 
-//	@OneToMany(mappedBy = "ACCOUNT")
-//	private List<UserAccount> join = new ArrayList<>();
-//	
-//	public List<UserAccount> getJoin() {
-//		return join;
-//	}
-//	
-//	public void setJoin(List<UserAccount> join) {
-//		this.join = join;
-//	}
+	@OneToMany
+	private List<UserAccount> join = new ArrayList<>();
+	
+	public List<UserAccount> getJoin() {
+		return join;
+	}
+	
+	public void setJoin(List<UserAccount> join) {
+		this.join = join;
+	}
 
 	public Long getId() {
 		return id;
@@ -50,5 +51,13 @@ public class Account {
 
 	public void setUser(Users user) {
 		this.user = user;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
