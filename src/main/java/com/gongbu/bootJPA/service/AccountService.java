@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gongbu.bootJPA.entity.Account;
+import com.gongbu.bootJPA.domain.Account;
 import com.gongbu.bootJPA.repository.AccountRepository;
 
 @Service
@@ -21,13 +21,8 @@ public class AccountService{
 	@Autowired AccountRepository accountRepository;
 	
 	@Transactional
-	public void login() {
-	}
-	
-	public void accountAdd(String userId, String accountId) {
-	}
-	
-	public List<Account> findAccount() {
-		return null;
+	public List<Account> getAccount() {
+		List<Account> account = accountRepository.findAll();
+		return account;
 	}
 }

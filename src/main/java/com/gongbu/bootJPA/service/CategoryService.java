@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gongbu.bootJPA.entity.Category;
+import com.gongbu.bootJPA.domain.Category;
 import com.gongbu.bootJPA.repository.CategoryRepository;
 
 @Service("CategoryServie")

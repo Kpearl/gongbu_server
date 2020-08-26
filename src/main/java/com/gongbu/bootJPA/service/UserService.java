@@ -3,7 +3,7 @@ package com.gongbu.bootJPA.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gongbu.bootJPA.entity.Users;
+import com.gongbu.bootJPA.domain.Users;
 import com.gongbu.bootJPA.repository.UserRepository;
 
 @Service("UserService")

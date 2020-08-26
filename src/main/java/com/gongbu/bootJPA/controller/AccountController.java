@@ -7,23 +7,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gongbu.bootJPA.domain.Post;
+import com.gongbu.bootJPA.domain.Account;
 import com.gongbu.bootJPA.service.AccountService;
 
 @RestController
-@RequestMapping("/post/*")
-public class PostCountroller {
-
+@RequestMapping("/account/*")
+public class AccountController {
+	
 	@Autowired
 	private AccountService accountService;
-	
-	@PostMapping("/write")
-	public Boolean write(Post account) {
-		return null;
-	}
-	
-	@PostMapping("/list")
-	public List<Post> read(String id, String g_id) {
-		return null;
+
+	@PostMapping("/getAccount")
+	public List<Account> getCategory(Account id) {
+		return accountService.getAccount();
 	}
 }

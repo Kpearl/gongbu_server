@@ -1,4 +1,4 @@
-package com.gongbu.bootJPA.entity;
+package com.gongbu.bootJPA.domain;
 
 import java.util.ArrayList;
 import java.util.List;
