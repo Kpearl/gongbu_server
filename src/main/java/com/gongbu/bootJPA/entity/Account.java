@@ -1,12 +1,10 @@
-package com.gongbu.bootJPA.domain;
+package com.gongbu.bootJPA.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,12 +14,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ACCOUNTS")
-@SequenceGenerator(name = "ACCOUNT_ID", sequenceName = "ACCOUNT_SEQ", initialValue = 1, allocationSize = 1)
 public class Account {
 
 	@Id
-	@Column(name = "ACCOUNT_ID")
-	@GeneratedValue (strategy = GenerationType.SEQUENCE)
+	@Column(name = "ACCOUNT_ID", nullable = false)
+	@SequenceGenerator(name = "ACCOUNT_ID", sequenceName = "ACCOUNT_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 
 	@ManyToOne
@@ -32,6 +29,9 @@ public class Account {
 
 	@OneToMany
 	private List<UserAccount> join = new ArrayList<>();
+
+	@OneToMany(mappedBy = "account")
+	private List<Post> post = new ArrayList<>();
 
 	public Account() {
 	}
@@ -66,5 +66,13 @@ public class Account {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Post> getPost() {
+		return post;
+	}
+
+	public void setPost(List<Post> post) {
+		this.post = post;
 	}
 }

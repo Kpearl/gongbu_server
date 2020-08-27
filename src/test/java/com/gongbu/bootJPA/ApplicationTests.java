@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.gongbu.bootJPA.domain.Users;
+import com.gongbu.bootJPA.entity.Users;
 import com.gongbu.bootJPA.service.UserService;
 
 @RunWith(SpringRunner.class)

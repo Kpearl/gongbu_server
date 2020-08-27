@@ -1,11 +1,10 @@
-package com.gongbu.bootJPA.domain;
+package com.gongbu.bootJPA.entity;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -15,7 +14,7 @@ import javax.persistence.TemporalType;
 public class Users {
 
 	@Id
-	@Column(name = "USER_ID")
+	@Column(name = "USER_ID", nullable = false)
 	private String id;
 
 	private String password;

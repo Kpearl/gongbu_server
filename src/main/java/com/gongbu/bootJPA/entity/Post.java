@@ -1,11 +1,9 @@
-package com.gongbu.bootJPA.domain;
+package com.gongbu.bootJPA.entity;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,32 +13,35 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@SequenceGenerator(name = "POST_ID", sequenceName = "POST_SEQ", initialValue = 1, allocationSize = 1)
 public class Post {
 
 	@Id
-	@Column(name = "POST_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "POST_ID", nullable = false)
+	@SequenceGenerator(name = "POST_ID", sequenceName = "POST_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 
 	private String title;
 	private String content;
 	private String cost;
 	private String consumer;
-	
+
 	@OneToOne
 	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "ACCOUNT_ID")
 	private Account account;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date purchaseDate;
-	
-	public Post() {}
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date CreatedDate;
+
+	public Post() {
+	}
+
 	public Category getCategory() {
 		return category;
 	}
@@ -55,6 +56,12 @@ public class Post {
 
 	public void setAccount(Account account) {
 		this.account = account;
+
+		if (this.account != null) {
+			this.account.getPost().remove(this);
+		}
+		this.account = account;
+		account.getPost().add(this);
 	}
 
 	public Long getId() {
@@ -106,4 +113,11 @@ public class Post {
 
 	}
 
+	public Date getCreatedDate() {
+		return CreatedDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		CreatedDate = createdDate;
+	}
 }

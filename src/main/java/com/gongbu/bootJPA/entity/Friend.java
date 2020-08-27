@@ -1,21 +1,20 @@
-package com.gongbu.bootJPA.domain;
+package com.gongbu.bootJPA.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "FRIEND_ID", sequenceName = "FRIEND_SEQ", initialValue = 1, allocationSize = 1)
 public class Friend {
 
 	@Id
-	@Column(name = "FRIEND_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "FRIEND_ID", nullable = false)
+	@SequenceGenerator(name = "FRIEND_ID", sequenceName = "FRIEND_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 
 	@ManyToOne
@@ -23,7 +22,9 @@ public class Friend {
 	private Users user;
 
 	private Long frend;
-	private int state;
+	
+	@Enumerated(EnumType.STRING)
+	private FriendState state;
 
 	public Friend() {
 	}
@@ -52,11 +53,11 @@ public class Friend {
 		this.frend = frend;
 	}
 
-	public int getState() {
+	public FriendState getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(FriendState state) {
 		this.state = state;
 	}
 }
