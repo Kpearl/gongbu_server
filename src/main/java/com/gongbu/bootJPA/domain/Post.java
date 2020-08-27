@@ -5,18 +5,22 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@SequenceGenerator(name = "POST_ID", sequenceName = "POST_SEQ", initialValue = 1, allocationSize = 1)
 public class Post {
 
-	@Id	@GeneratedValue
+	@Id
 	@Column(name = "POST_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	private String title;
@@ -34,6 +38,8 @@ public class Post {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date purchaseDate;
+	
+	public Post() {}
 	
 	public Category getCategory() {
 		return category;
