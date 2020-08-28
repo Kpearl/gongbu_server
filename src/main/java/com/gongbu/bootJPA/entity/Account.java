@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,6 +34,10 @@ public class Account {
 	@OneToMany(mappedBy = "account")
 	private List<Post> post = new ArrayList<>();
 
+	@OneToOne
+	@JoinColumn(name="CATEGORY_GORUP_ID")
+	private CategoryGroup categoryGroup = new CategoryGroup();
+	
 	public Account() {
 	}
 

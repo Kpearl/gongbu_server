@@ -25,8 +25,7 @@ public class Post {
 	private String cost;
 	private String consumer;
 
-	@OneToOne
-	@JoinColumn(name = "CATEGORY_ID")
+	@OneToOne(mappedBy = "post")
 	private Category category;
 
 	@ManyToOne

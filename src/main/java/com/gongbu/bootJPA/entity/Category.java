@@ -20,11 +20,15 @@ public class Category {
 	@JoinColumn(name = "ACCOUNT_ID")
 	private Account account;
 	
-	@OneToOne(mappedBy = "category")
+	@OneToOne
+	@JoinColumn(name = "POST_ID")
 	private Post post;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "CATEGORY_GROUP_ID")
+	private CategoryGroup categoryGroup;
+	
 	private String name;
-
 	public Category() {}
 	
 	public Account getAccount() {
