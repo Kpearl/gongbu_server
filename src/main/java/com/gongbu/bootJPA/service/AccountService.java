@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gongbu.bootJPA.entity.Account;
-import com.gongbu.bootJPA.entity.UserAccount;
-import com.gongbu.bootJPA.entity.UserAccountId;
 import com.gongbu.bootJPA.entity.Users;
 import com.gongbu.bootJPA.repository.AccountRepository;
 
@@ -30,17 +28,10 @@ public class AccountService{
 	}
 	
 	public void save(Users user, Account account) {
-		UserAccount userAccount = new UserAccount();
-		userAccount.setAccount(account);
-		userAccount.setUser(user);
-		em.persist(userAccount);
+		
 	}
 	
 	public void find(String UAId) {
-		UserAccount userAccount = em.find(UserAccount.class, UAId);
-		Users user = userAccount.getUser();
-		Account account = userAccount.getAccount();
 		
-		System.out.println("user : " + user.toString() + " account : " + account.toString());
 	}
 }

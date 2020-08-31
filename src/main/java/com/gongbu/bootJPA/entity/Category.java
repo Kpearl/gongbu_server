@@ -2,6 +2,7 @@ package com.gongbu.bootJPA.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,42 +17,23 @@ public class Category {
 	@SequenceGenerator(name = "CATEGORY_ID", sequenceName = "CATEGORY_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "ACCOUNT_ID")
-	private Account account;
-	
-	@OneToOne
-	@JoinColumn(name = "POST_ID")
-	private Post post;
-	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATEGORY_GROUP_ID")
 	private CategoryGroup categoryGroup;
 	
 	private String name;
-	public Category() {}
 	
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
+	public Category() {}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public CategoryGroup getCategoryGroup() {
+		return categoryGroup;
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 }

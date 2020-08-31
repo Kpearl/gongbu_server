@@ -22,16 +22,8 @@ public class UsersController {
 	}
 	
 	@PostMapping("/register")
-	public Boolean registerUser(Users user) {
-		Users users = new Users();
-		users.setId(user.getId());
-		users.setPassword(user.getPassword());
-		users.setName(user.getName());
-		users.setPhone(user.getPhone());
-		users.setEmail(user.getEmail());
-		users.setBirth(user.getBirth());
-		
-		return usersInfoService.registerUser(users);
+	public Boolean registerUser(Users user) {		
+		return usersInfoService.registerUser(user);
 	}
 	
 	@PostMapping("/get")

@@ -35,10 +35,6 @@ class ApplicationTests {
 	//@Test
 	public void joinTest() throws Exception {
 		Users user = new Users();
-		
-		user.setId("1");
-		user.setName("name");
-		
 		service.registerUser(user);
 		
 		assertThat(user.getId(), is(user.getId()));

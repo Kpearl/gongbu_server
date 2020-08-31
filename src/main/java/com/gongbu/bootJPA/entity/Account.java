@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,62 +23,50 @@ public class Account {
 	@SequenceGenerator(name = "ACCOUNT_ID", sequenceName = "ACCOUNT_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID")
 	private Users user;
 
-	private String name;
-
-	@OneToMany
-	private List<UserAccount> join = new ArrayList<>();
-
-	@OneToMany(mappedBy = "account")
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 	private List<Post> post = new ArrayList<>();
 
 	@OneToOne
-	@JoinColumn(name="CATEGORY_GORUP_ID")
-	private CategoryGroup categoryGroup = new CategoryGroup();
-	
-	public Account() {
-	}
+	@JoinColumn(name = "SHARER_ID")
+	private Sharer sharer;
 
-	public List<UserAccount> getJoin() {
-		return join;
-	}
+	@OneToOne
+	@JoinColumn(name = "CATEGORY_GROUP_ID")
+	private CategoryGroup categoryGroup;
 
-	public void setJoin(List<UserAccount> join) {
-		this.join = join;
+	private String name;
+
+	public Account() {}
+
+	public Account(Account account) {
+		this.name = account.getName();
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Users getUser() {
 		return user;
-	}
-
-	public void setUser(Users user) {
-		this.user = user;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public List<Post> getPost() {
 		return post;
 	}
 
-	public void setPost(List<Post> post) {
-		this.post = post;
+	public Sharer getSharer() {
+		return sharer;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public CategoryGroup getCategoryGroup() {
+		return categoryGroup;
 	}
 }
