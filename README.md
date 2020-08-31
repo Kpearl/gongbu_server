@@ -13,5 +13,7 @@ ORM : Object-Relational Mapping, 객체가 테이블이 되도록 매핑 시켜�
 JPA : Java Rersistence API, ORM을 사용하기 위한 인터페이스를 모아둔 것  
 Hibernate : JPA 구현체  
 
-# DB
+# UML
 ![DB](./image/UML.png)  
+
+# ERD
