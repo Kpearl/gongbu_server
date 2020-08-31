@@ -14,4 +14,4 @@ JPA : Java Rersistence API, ORM을 사용하기 위한 인터페이스를 모아
 Hibernate : JPA 구현체  
 
 # DB
-![DB](./image/test.png)  
+![DB](./image/UML.png)  
