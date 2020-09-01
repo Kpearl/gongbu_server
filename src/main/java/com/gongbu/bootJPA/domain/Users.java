@@ -1,4 +1,4 @@
-package com.gongbu.bootJPA.entity;
+package com.gongbu.bootJPA.domain;
 
 import java.util.Date;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -18,11 +18,10 @@ import javax.persistence.TemporalType;
 public class Users {
 
 	@Id
-	@Column(name = "USER_ID", nullable = false)
-	@SequenceGenerator(name = "USER_ID", sequenceName = "USER_SEQ", initialValue = 1, allocationSize = 1)
+	@GeneratedValue
+	@Column(name = "ID", nullable = false)
 	private Long id;
-
-	@Column(name = "LOGIN_ID", nullable = false)
+	
 	private String userId;
 	private String name;
 	private String password;
@@ -43,7 +42,8 @@ public class Users {
 	@JoinColumn(name = "SHARER_ID")
 	private Sharer sharer;
 
-	public Users() {}
+	public Users() {
+	}
 
 	public Users(Users user) {
 		this.userId = user.getUserId();
@@ -54,15 +54,47 @@ public class Users {
 		this.email = user.getEmail();
 		this.birth = user.getBirth();
 	}
+	
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-	public Long getId() {
-		return id;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+
+	public void setAccount(List<Account> account) {
+		this.account = account;
+	}
+
+	public void setFriend(List<Friend> friend) {
+		this.friend = friend;
 	}
 
 	public String getUserId() {
 		return userId;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -93,5 +125,11 @@ public class Users {
 
 	public List<Friend> getFriend() {
 		return friend;
+	}
+
+	@Override
+	public String toString() {
+		return "id = " + id + ", name = " + name + ", password = " + password + ", nickName = " + nickName
+				+ ", phone = " + phone + ", email = " + email + ", birth = " + birth;
 	}
 }

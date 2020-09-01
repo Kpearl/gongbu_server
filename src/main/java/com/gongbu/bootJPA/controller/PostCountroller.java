@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gongbu.bootJPA.entity.Post;
+import com.gongbu.bootJPA.domain.Post;
 import com.gongbu.bootJPA.service.AccountService;
 
 @RestController

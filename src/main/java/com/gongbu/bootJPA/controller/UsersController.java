@@ -6,29 +6,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gongbu.bootJPA.entity.Users;
+import com.gongbu.bootJPA.domain.Users;
+import com.gongbu.bootJPA.repository.UserRepository;
 import com.gongbu.bootJPA.service.UserService;
 
 @RestController
 @RequestMapping("/users/*")
 public class UsersController {
 	
-	@Autowired
-	private UserService usersInfoService;
+	@Autowired UserService usersService;
+	@Autowired UserRepository userRepository;
 	
 	@PostMapping("/login")
-	public Boolean loginUser(String id, String password) {
-		return usersInfoService.login(id, password);
+	public Users loginUser(String id, String password) {
+		return usersService.login(id, password);
 	}
 	
 	@PostMapping("/register")
-	public Boolean registerUser(Users user) {		
-		return usersInfoService.registerUser(user);
+	public String registerUser(Users user) {		
+		return usersService.registerUser(user);
 	}
 	
 	@PostMapping("/get")
 	public Users getUser(String user_id) {
-		return usersInfoService.getUser(user_id);
+		return usersService.getUser(user_id);
 	}
 	
 	@GetMapping("/check")

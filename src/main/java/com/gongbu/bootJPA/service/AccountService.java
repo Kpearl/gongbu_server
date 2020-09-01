@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gongbu.bootJPA.entity.Account;
-import com.gongbu.bootJPA.entity.Users;
+import com.gongbu.bootJPA.domain.Account;
+import com.gongbu.bootJPA.domain.Users;
 import com.gongbu.bootJPA.repository.AccountRepository;
 
 @Service
