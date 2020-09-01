@@ -13,12 +13,7 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
-	
-	public Users login(String id, String password) {
-		Users user = userRepository.findByUserId(id);
-		return null;
-	}
-
+		
 	public String registerUser(Users user) {
 		Users findUser = userRepository.findByUserId(user.getUserId());
 		if(findUser == null) {
@@ -26,8 +21,23 @@ public class UserService {
 		}
 		return user.getUserId();
 	}
+	
+	public String login(String id, String password) {
+		Users findUser = userRepository.findByUserId(id);
+		if(findUser == null) {
+			throw new IllegalStateException("존재하지 않는 아이디");
+		} 
+		if(!findUser.getPassword().equals(password)) {
+			throw new IllegalStateException("비밀번호 오류");
+		}
+		return id;
+	}
 
-	public Users getUser(String id) {
-		return null;//userRepository.getOne(id);
+	public Users getInfo(String id) {
+		Users findUser =userRepository.findByUserId(id);
+		if(findUser == null) {
+			throw new IllegalStateException("존재하지 않는 아이디");
+		} 
+		return findUser;
 	}
 }

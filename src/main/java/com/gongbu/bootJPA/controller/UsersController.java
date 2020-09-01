@@ -17,19 +17,19 @@ public class UsersController {
 	@Autowired UserService usersService;
 	@Autowired UserRepository userRepository;
 	
+	@PostMapping("/register")
+	public String register(Users user) {		
+		return usersService.registerUser(user);
+	}
+
 	@PostMapping("/login")
-	public Users loginUser(String id, String password) {
+	public String login(String id, String password) {
 		return usersService.login(id, password);
 	}
 	
-	@PostMapping("/register")
-	public String registerUser(Users user) {		
-		return usersService.registerUser(user);
-	}
-	
-	@PostMapping("/get")
-	public Users getUser(String user_id) {
-		return usersService.getUser(user_id);
+	@PostMapping("/getInfo")
+	public Users getInfo(String user_id) {
+		return usersService.getInfo(user_id);
 	}
 	
 	@GetMapping("/check")
@@ -37,7 +37,7 @@ public class UsersController {
 		return true;
 	}
 	
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public Boolean logout() {
 		return null;
 	}

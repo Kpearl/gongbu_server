@@ -1,7 +1,5 @@
 package com.gongbu.bootJPA;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +20,7 @@ class UserTests {
 	@Autowired
 	private UserService userService;
 
-	@Test
+	//@Test
 	public void registerTest() throws Exception {
 		Users user = new Users();
 		user.setUserId("Test");
@@ -36,15 +34,23 @@ class UserTests {
 		String result = userService.registerUser(user);
 		
 		System.out.println(result);
-		
-	//	assertThat(user.getId(), is(user.getId()));
+	}
+	
+	//@Test
+	public void LoginTest() throws Exception {
+		//정상동작
+		String result1 = userService.login("root", "root");
+		//아이디 에러
+		//String result2 = userService.login("test", "root");
+		//비밀번호 에러
+		//String result3 = userService.login("root", "1234");
 	}
 
-	// @Test
+	@Test
 	public void getTest() throws Exception {
 		Users user = new Users();
-		user = userService.getUser("test");
+		user = userService.getInfo("Test");
 
-		assertEquals(user.getName(), "test");
+		System.out.println(user.toString());
 	}
 }
