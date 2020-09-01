@@ -13,4 +13,4 @@ JUnit
 ![UML](./image/UML.png)  
 
 # ERD
-![ERD](./image/ERD.png)  
+![ERD](./image/ERD.PNG)  
