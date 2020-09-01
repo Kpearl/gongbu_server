@@ -9,6 +9,12 @@ JPA/Hibernate
 MVC Pattern  
 JUnit  
 
+# UML
+![UML](./image/UML.png)  
+
+# ERD
+![ERD](./image/ERD.PNG)  
+
 # 주요기능
 ### 회원 기능
 - 회원가입
@@ -34,9 +40,3 @@ JUnit
 - 카테고리 등록
 - 카테고리 조회
 - 카테고리 수정
-
-# UML
-![UML](./image/UML.png)  
-
-# ERD
-![ERD](./image/ERD.PNG)  
