@@ -27,7 +27,7 @@ public class Post {
 	private String category;
 	private String title;
 	private String content;
-	private String cost;
+	private int cost;
 	private String consumer;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -37,6 +37,15 @@ public class Post {
 	private Date CreatedDate;
 
 	public Post() {}
+	
+	public Post(Post post) {
+		this.account = post.getAccount();
+		this.category = post.getCategory();
+		this.title = post.getTitle();
+		this.content = post.getContent();
+		this.cost = post.getCost();
+		this.consumer = post.getConsumer();
+	}
 
 	public Long getId() {
 		return id;
@@ -58,7 +67,7 @@ public class Post {
 		return content;
 	}
 
-	public String getCost() {
+	public int getCost() {
 		return cost;
 	}
 
@@ -67,10 +76,10 @@ public class Post {
 	}
 
 	public Date getPurchaseDate() {
-		return purchaseDate;
+		return new Date();
 	}
 
 	public Date getCreatedDate() {
-		return CreatedDate;
+		return new Date();
 	}
 }
