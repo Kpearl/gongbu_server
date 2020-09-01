@@ -10,6 +10,7 @@ MVC Pattern
 JUnit  
 
 # UML
-![DB](./image/UML.png)  
+![UML](./image/UML.png)  
 
 # ERD
+![ERD](./image/ERD.png)  
