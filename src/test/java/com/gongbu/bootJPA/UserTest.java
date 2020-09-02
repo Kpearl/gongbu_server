@@ -2,21 +2,21 @@ package com.gongbu.bootJPA;
 
 import java.util.Date;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gongbu.bootJPA.domain.Users;
 import com.gongbu.bootJPA.service.UserService;
 
-@RunWith(SpringRunner.class) 
+@RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(classes=Application.class)
 @SpringBootTest(classes=Application.class)
-class UserTests {
-
+public class UserTest {
+	
 	@Autowired
 	private UserService userService;
 
@@ -49,7 +49,7 @@ class UserTests {
 	@Test
 	public void getTest() throws Exception {
 		Users user = new Users();
-		user = userService.getInfo("Test");
+		user = userService.getInfo("root");
 
 		System.out.println(user.toString());
 	}

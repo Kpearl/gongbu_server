@@ -1,5 +1,6 @@
 package com.gongbu.bootJPA.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Users {
@@ -33,14 +35,14 @@ public class Users {
 	private Date birth;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Account> account;
-
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Friend> friend;
+	private List<Account> account = new ArrayList<Account>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "SHARER_ID")
-	private Sharer sharer;
+	private Sharer sharer = new Sharer();
+	
+	@Transient
+	private List<Friend> friend = new ArrayList<Friend>();
 
 	public Users() {
 	}
@@ -87,10 +89,10 @@ public class Users {
 		this.account = account;
 	}
 
-	public void setFriend(List<Friend> friend) {
-		this.friend = friend;
+	public Long getId() {
+		return id;
 	}
-
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -122,9 +124,21 @@ public class Users {
 	public List<Account> getAccount() {
 		return account;
 	}
+	
+	public Sharer getSharer() {
+		return sharer;
+	}
+
+	public void setSharer(Sharer sharer) {
+		this.sharer = sharer;
+	}
 
 	public List<Friend> getFriend() {
 		return friend;
+	}
+
+	public void setFriend(List<Friend> friend) {
+		this.friend = friend;
 	}
 
 	@Override

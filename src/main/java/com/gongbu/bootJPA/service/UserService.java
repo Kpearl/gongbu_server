@@ -12,7 +12,7 @@ import com.gongbu.bootJPA.repository.UserRepository;
 public class UserService {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 		
 	public String registerUser(Users user) {
 		Users findUser = userRepository.findByUserId(user.getUserId());
@@ -34,7 +34,7 @@ public class UserService {
 	}
 
 	public Users getInfo(String id) {
-		Users findUser =userRepository.findByUserId(id);
+		Users findUser = userRepository.findByUserId(id);
 		if(findUser == null) {
 			throw new IllegalStateException("존재하지 않는 아이디");
 		} 

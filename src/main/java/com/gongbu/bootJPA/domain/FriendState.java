@@ -1,5 +1,5 @@
 package com.gongbu.bootJPA.domain;
 
 public enum FriendState {
-	REQUEST, RESPONSE, FOLLOW
+	FOLLOWUP, LETFOLLOW, UNFOLLOW, FOLLOW
 }
