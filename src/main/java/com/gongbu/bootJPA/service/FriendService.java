@@ -29,6 +29,7 @@ public class FriendService {
 
 		if (!friendRepository.existsByUserId(userInfo.getId())) {
 			userFriend = new Friend(userInfo.getId(), FriendState.FOLLOWUP, targetInfo.getId());
+			System.out.println("Test : " + userFriend.toString());
 		} else {
 			List<Friend> userList = friendRepository.findByUserId(userInfo.getId());
 			userFriend = checkState(userList, targetInfo.getId(), FriendState.FOLLOW);
@@ -57,6 +58,7 @@ public class FriendService {
 			List<Friend> userList = friendRepository.findByUserId(userInfo.getId());
 			Friend userFriend = checkState(userList, targetInfo.getId(), FriendState.UNFOLLOW);
 			friendRepository.delete(userFriend);
+			userInfo.getFriend().remove(userFriend);
 			userFriend = null;
 		}
 
@@ -64,6 +66,7 @@ public class FriendService {
 			List<Friend> targetList = friendRepository.findByUserId(targetInfo.getId());
 			Friend targetFriend = checkState(targetList, userInfo.getId(), FriendState.UNFOLLOW);
 			friendRepository.delete(targetFriend);
+			targetInfo.getFriend().remove(targetFriend);
 			targetFriend = null;
 		}
 	}
@@ -81,7 +84,7 @@ public class FriendService {
 		return null;
 	}
 
-	public List<Friend> friendList(String id) {
+	public List<Friend> getFriendList(String id) {
 		Users user = userRepository.findByUserId(id);
 		List<Friend> friendList = null;
 		if (friendRepository.existsByUserId(user.getId())) {

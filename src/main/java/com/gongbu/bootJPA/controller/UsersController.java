@@ -15,7 +15,6 @@ import com.gongbu.bootJPA.service.UserService;
 public class UsersController {
 	
 	@Autowired UserService usersService;
-	@Autowired UserRepository userRepository;
 	
 	@PostMapping("/register")
 	public String register(Users user) {		

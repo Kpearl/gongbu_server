@@ -27,7 +27,11 @@ public class Friend {
 
 	public Friend() {}
 	
-	public Friend(Long userId, FriendState state, Long targetId) {}
+	public Friend(Long userId, FriendState state, Long targetId) {
+		this.userId = userId;
+		this.targetId = targetId;
+		this.state = state;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,5 +59,10 @@ public class Friend {
 
 	public void setState(FriendState state) {
 		this.state = state;
+	}
+	
+	@Override
+	public String toString() {
+		return "userId : " + userId + ", targetId : " + targetId + ", state :" + state;
 	}
 }

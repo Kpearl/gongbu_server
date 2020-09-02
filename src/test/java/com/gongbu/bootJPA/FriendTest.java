@@ -20,7 +20,7 @@ public class FriendTest {
 	@Autowired
 	private FriendService friendService;
 
-	@Test
+	//@Test
 	public void followTest() throws Exception {
 		Friend f = friendService.followFriend("root", "Test");
 		System.out.println(f.getId() + " " + f.getUserId() + " " + f.getState() + " " + f.getTargetId());
@@ -31,12 +31,8 @@ public class FriendTest {
 		friendService.unFollowFriend("root", "Test");
 	}
 	
-	//@Test
+	@Test
 	public void friendList() throws Exception {
-		List<Friend> result = friendService.friendList("Test");
-		
-		for(Friend f : result) {
-			System.out.println("userid : " + f.getUserId() + ", targetID : " + f.getTargetId() + ", state : " + f.getState());
-		}
+		List<Friend> result = friendService.getFriendList("Test");
 	}
 }
