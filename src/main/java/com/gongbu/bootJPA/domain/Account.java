@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "ACCOUNTS")
 public class Account {
@@ -24,11 +27,13 @@ public class Account {
 	@Column(name = "ACCOUNT_ID", nullable = false)
 	private Long id;
 
+	@JsonBackReference
 	@JoinColumn(name = "USER_ID")
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Users user;
 
-	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+	@JsonManagedReference
+	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
 	private List<Post> post = new ArrayList<>();
 
 	@OneToOne

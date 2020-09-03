@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gongbu.bootJPA.domain.Users;
-import com.gongbu.bootJPA.repository.UserRepository;
 import com.gongbu.bootJPA.service.UserService;
 
 @RestController

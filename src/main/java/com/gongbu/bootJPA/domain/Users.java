@@ -17,6 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Users {
 
@@ -35,7 +37,8 @@ public class Users {
 	@Temporal(TemporalType.DATE)
 	private Date birth;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonManagedReference
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Account> account = new ArrayList<Account>();
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

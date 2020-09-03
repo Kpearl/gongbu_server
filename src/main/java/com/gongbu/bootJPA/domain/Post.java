@@ -2,6 +2,7 @@ package com.gongbu.bootJPA.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Post {
 
@@ -20,8 +23,9 @@ public class Post {
 	@SequenceGenerator(name = "POST_ID", sequenceName = "POST_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name = "ACCOUNT_ID")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Account account;
 
 	private String category;

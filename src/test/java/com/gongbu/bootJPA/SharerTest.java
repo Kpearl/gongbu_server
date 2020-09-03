@@ -15,26 +15,26 @@ import com.gongbu.bootJPA.service.AccountService;
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(classes=Application.class)
 @SpringBootTest(classes=Application.class)
-public class AccountTest {
+public class SharerTest {
 
 	@Autowired
 	private AccountService accountService;
 
 	//@Test
 	public void saveAccountTest() throws Exception {
-		accountService.saveAccount("Test", "test");
+		Account account = new Account("account1");
 	}
 
-	@Test
+	//@Test
 	public void getAccountListTest() throws Exception {
-		List<Account> result = accountService.accountList("Test");
+		List<Account> result = accountService.accountList("root");
 		
 		for(Account a : result ) {
 			System.out.println(a.getName() + " " + a.getUser());
 		}
 	}	
 	
-	//@Test
+	@Test
 	public void updateAccountTest() throws Exception {
 		Account result = accountService.updateAccount((long) 8, "TestAccount");
 		System.out.println(result.toString());

@@ -17,8 +17,18 @@ public class AccountController {
 	@Autowired
 	private AccountService accountService;
 
-	@PostMapping("/getAccount")
-	public List<Account> getCategory(String id) {
-		return accountService.accountList(id);
+	@PostMapping("/saveAccount")
+	public void saveAccount(String userId, String name) {
+		accountService.saveAccount(userId, name);
+	}
+	
+	@PostMapping("/getAccountList")
+	public List<Account> getAccount(String userId) {
+		return accountService.accountList(userId);
+	}
+	
+	@PostMapping("/updateAccount")
+	public Account updateAccount(Long accountId, String name) {
+		return accountService.updateAccount(accountId, name);
 	}
 }
