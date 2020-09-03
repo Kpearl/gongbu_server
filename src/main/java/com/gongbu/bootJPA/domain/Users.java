@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,7 +38,7 @@ public class Users {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Account> account = new ArrayList<Account>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "SHARER_ID")
 	private Sharer sharer = new Sharer();
 	
@@ -85,8 +86,11 @@ public class Users {
 		this.birth = birth;
 	}
 
-	public void setAccount(List<Account> account) {
-		this.account = account;
+	public void setAccount(Account account) {
+		this.account.add(account);
+		if(account.getUser() != this) {
+			account.setUser(this);
+		}
 	}
 
 	public Long getId() {
@@ -131,6 +135,9 @@ public class Users {
 
 	public void setSharer(Sharer sharer) {
 		this.sharer = sharer;
+		if (!sharer.getUser().contains(this)) {
+			sharer.getUser().add(this);
+		}
 	}
 
 	public List<Friend> getFriend() {

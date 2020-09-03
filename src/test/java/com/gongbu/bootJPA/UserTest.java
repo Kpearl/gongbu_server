@@ -20,7 +20,7 @@ public class UserTest {
 	@Autowired
 	private UserService userService;
 
-	//@Test
+	@Test
 	public void registerTest() throws Exception {
 		Users user = new Users();
 		user.setUserId("Test");
@@ -30,6 +30,16 @@ public class UserTest {
 		user.setPhone("010-0000-0000");
 		user.setBirth(new Date());
 		user.setEmail("test@test.com");
+		
+//		Users user = new Users();
+//		user.setUserId("root");
+//		user.setName("root");
+//		user.setPassword("root");
+//		user.setNickName("root");
+//		user.setPhone("010-0000-0000");
+//		user.setBirth(new Date());
+//		user.setEmail("roott@root.com");
+		
 		
 		String result = userService.registerUser(user);
 		
@@ -46,7 +56,7 @@ public class UserTest {
 		//String result3 = userService.login("root", "1234");
 	}
 
-	@Test
+	//@Test
 	public void getTest() throws Exception {
 		Users user = new Users();
 		user = userService.getInfo("root");

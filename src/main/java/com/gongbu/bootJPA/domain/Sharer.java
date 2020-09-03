@@ -5,18 +5,18 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Sharer {
 	
 	@Id
+	@GeneratedValue
 	@Column(name = "SHARER_ID", nullable = false)
-	@SequenceGenerator(name = "SHARER_ID", sequenceName = "SHARER_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 	
 	@OneToMany(mappedBy = "sharer", fetch = FetchType.LAZY)
@@ -27,6 +27,17 @@ public class Sharer {
 	private Account account;
 	
 	public Sharer() {}
+
+	public void setUser(Users user) {
+		this.user.add(user);
+		if(user.getSharer() != this) {
+			user.setSharer(this);
+		}
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	public Long getId() {
 		return id;

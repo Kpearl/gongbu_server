@@ -3,15 +3,16 @@ package com.gongbu.bootJPA.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -19,12 +20,12 @@ import javax.persistence.Table;
 public class Account {
 
 	@Id
+	@GeneratedValue
 	@Column(name = "ACCOUNT_ID", nullable = false)
-	@SequenceGenerator(name = "ACCOUNT_ID", sequenceName = "ACCOUNT_SEQ", initialValue = 1, allocationSize = 1)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Users user;
 
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
@@ -42,8 +43,8 @@ public class Account {
 
 	public Account() {}
 
-	public Account(Account account) {
-		this.name = account.getName();
+	public Account(String name) {
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -68,5 +69,33 @@ public class Account {
 
 	public CategoryGroup getCategoryGroup() {
 		return categoryGroup;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+		if (!user.getAccount().contains(this)) {
+			user.getAccount().add(this);
+		}
+	}
+
+	public void setPost(List<Post> post) {
+		this.post = post;
+	}
+
+	public void setSharer(Sharer sharer) {
+		this.sharer = sharer;
+	}
+
+	public void setCategoryGroup(CategoryGroup categoryGroup) {
+		this.categoryGroup = categoryGroup;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "userId : " + user.getId() + ", accountName : " + name;
 	}
 }

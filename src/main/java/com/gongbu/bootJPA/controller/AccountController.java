@@ -18,7 +18,7 @@ public class AccountController {
 	private AccountService accountService;
 
 	@PostMapping("/getAccount")
-	public List<Account> getCategory(Account id) {
-		return accountService.getAccount();
+	public List<Account> getCategory(String id) {
+		return accountService.accountList(id);
 	}
 }
