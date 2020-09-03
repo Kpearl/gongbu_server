@@ -25,18 +25,26 @@ public class AccountTest {
 		accountService.saveAccount("Test", "test");
 	}
 
-	@Test
+	//@Test
 	public void getAccountListTest() throws Exception {
 		List<Account> result = accountService.accountList("Test");
 		
 		for(Account a : result ) {
 			System.out.println(a.getName() + " " + a.getUser());
 		}
-	}	
+	}
 	
 	//@Test
+	public void getAccountTest() throws Exception {
+		Account account = accountService.getAccount((long) 8);
+		System.out.println(account.toString());
+	}
+	
+	@Test
 	public void updateAccountTest() throws Exception {
-		Account result = accountService.updateAccount((long) 8, "TestAccount");
+		Account account = accountService.getAccount((long) 8);
+		account.setName("updateAccount");
+		Account result = accountService.updateAccount(account);
 		System.out.println(result.toString());
 	}
 }

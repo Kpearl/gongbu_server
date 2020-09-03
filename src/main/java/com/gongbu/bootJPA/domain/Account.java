@@ -83,8 +83,11 @@ public class Account {
 		}
 	}
 
-	public void setPost(List<Post> post) {
-		this.post = post;
+	public void setPost(Post post) {
+		this.post.add(post);
+		if(post.getAccount() != this) {
+			post.setAccount(this);
+		}
 	}
 
 	public void setSharer(Sharer sharer) {

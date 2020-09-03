@@ -2,6 +2,7 @@ package com.gongbu.bootJPA.service;
 
 import java.util.List;
 
+import org.h2.engine.UserAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,10 +38,16 @@ public class AccountService {
 		return null;
 	}
 	
-	public Account updateAccount(Long accountId, String name) {
-		Account account = accountRepository.findById(accountId).get();
-		account.setName(name);
+	public Account getAccount(Long accountId) {
+		return accountRepository.findById(accountId).get();
+	}
+	
+	public Account updateAccount(Account account) {
 		accountRepository.save(account);
 		return account;
+	}
+	
+	public void deleteAccount(Account account) {
+		accountRepository.delete(account);
 	}
 }

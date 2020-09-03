@@ -28,7 +28,7 @@ public class AccountController {
 	}
 	
 	@PostMapping("/updateAccount")
-	public Account updateAccount(Long accountId, String name) {
-		return accountService.updateAccount(accountId, name);
+	public Account updateAccount(Account account) {
+		return accountService.updateAccount(account);
 	}
 }
