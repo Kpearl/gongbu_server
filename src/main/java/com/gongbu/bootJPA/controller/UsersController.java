@@ -26,8 +26,8 @@ public class UsersController {
 	}
 	
 	@PostMapping("/getInfo")
-	public Users getInfo(String user_id) {
-		return usersService.getInfo(user_id);
+	public Users getInfo(String userId) {
+		return usersService.getInfo(userId);
 	}
 	
 	@GetMapping("/check")

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Sharer {
 	
@@ -19,6 +21,7 @@ public class Sharer {
 	@Column(name = "SHARER_ID", nullable = false)
 	private Long id;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "sharer", fetch = FetchType.LAZY)
 	private List<Users> user;
 	

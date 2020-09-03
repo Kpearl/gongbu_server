@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -41,6 +42,7 @@ public class Users {
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Account> account = new ArrayList<Account>();
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "SHARER_ID")
 	private Sharer sharer = new Sharer();
