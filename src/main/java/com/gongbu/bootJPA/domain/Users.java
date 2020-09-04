@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -42,11 +38,6 @@ public class Users {
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Account> account = new ArrayList<Account>();
 
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "SHARER_ID")
-	private Sharer sharer = new Sharer();
-	
 	@Transient
 	private List<Friend> friend = new ArrayList<Friend>();
 
@@ -134,17 +125,6 @@ public class Users {
 		return account;
 	}
 	
-	public Sharer getSharer() {
-		return sharer;
-	}
-
-	public void setSharer(Sharer sharer) {
-		this.sharer = sharer;
-		if (!sharer.getUser().contains(this)) {
-			sharer.getUser().add(this);
-		}
-	}
-
 	public List<Friend> getFriend() {
 		return friend;
 	}

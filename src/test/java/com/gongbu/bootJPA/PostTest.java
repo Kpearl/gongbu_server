@@ -21,7 +21,7 @@ public class PostTest {
 	@Autowired
 	private PostService postService;
 
-	// @Test
+	@Test
 	public void savePostTest() throws Exception {
 		Post post = new Post();
 		post.setTitle("title");
@@ -29,7 +29,7 @@ public class PostTest {
 		post.setPurchaseDate(new Date(20200903));
 		post.setCost(1000);
 		post.setConsumer("root");
-		postService.savePost((long) 5, post);
+		postService.savePost((long) 6, post);
 
 		System.out.println(post.toString());
 	}
@@ -55,7 +55,7 @@ public class PostTest {
 		postService.updatePost((long) 5, post);
 	}
 
-	@Test
+	//@Test
 	public void deletePostTest() throws Exception {
 		Post post = postService.getPost((long) 13);
 		postService.deletePost((long) 5, post);

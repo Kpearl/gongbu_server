@@ -1,17 +1,13 @@
 package com.gongbu.bootJPA.domain;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Sharer {
@@ -21,36 +17,47 @@ public class Sharer {
 	@Column(name = "SHARER_ID", nullable = false)
 	private Long id;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy = "sharer", fetch = FetchType.LAZY)
-	private List<Users> user;
+	private Long userId;
 	
-	@OneToOne
 	@JoinColumn(name = "ACCOUNT_ID")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Account account;
 	
 	public Sharer() {}
+	
+	public Sharer(Account account) {
+		this.account = account;
+	}
 
-	public void setUser(Users user) {
-		this.user.add(user);
-		if(user.getSharer() != this) {
-			user.setSharer(this);
-		}
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setAccount(Account account) {
 		this.account = account;
+		if (!account.getSharer().contains(this)) {
+			account.getSharer().add(this);
+		}
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public List<Users> getUser() {
-		return user;
-	}
-
 	public Account getAccount() {
 		return account;
+	}
+	
+	@Override
+	public String toString() {
+		return "userId: " + userId + ", account : " + account.toString();
 	}
 }

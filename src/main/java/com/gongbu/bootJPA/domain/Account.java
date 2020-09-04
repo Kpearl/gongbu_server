@@ -36,9 +36,9 @@ public class Account {
 	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
 	private List<Post> post = new ArrayList<>();
 
-	@OneToOne
-	@JoinColumn(name = "SHARER_ID")
-	private Sharer sharer;
+	@JsonBackReference
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+	private List<Sharer> sharer = new ArrayList<>();
 
 	@OneToOne
 	@JoinColumn(name = "CATEGORY_GROUP_ID")
@@ -64,7 +64,7 @@ public class Account {
 		return post;
 	}
 
-	public Sharer getSharer() {
+	public List<Sharer> getSharer() {
 		return sharer;
 	}
 
@@ -91,7 +91,10 @@ public class Account {
 	}
 
 	public void setSharer(Sharer sharer) {
-		this.sharer = sharer;
+		this.sharer.add(sharer);
+		if(sharer.getAccount() != this) {
+			sharer.setAccount(this);
+		}
 	}
 
 	public void setCategoryGroup(CategoryGroup categoryGroup) {

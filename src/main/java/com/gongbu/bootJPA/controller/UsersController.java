@@ -13,7 +13,8 @@ import com.gongbu.bootJPA.service.UserService;
 @RequestMapping("/users/*")
 public class UsersController {
 	
-	@Autowired UserService usersService;
+	@Autowired
+	private UserService usersService;
 	
 	@PostMapping("/register")
 	public String register(Users user) {		
