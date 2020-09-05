@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -33,16 +32,16 @@ public class Account {
 	private Users user;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 	private List<Post> post = new ArrayList<>();
 
 	@JsonBackReference
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 	private List<Sharer> sharer = new ArrayList<>();
 
-	@OneToOne
-	@JoinColumn(name = "CATEGORY_GROUP_ID")
-	private CategoryGroup categoryGroup;
+	@JsonBackReference
+	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+	private List<Category> category = new ArrayList<>();
 
 	private String name;
 
@@ -72,8 +71,8 @@ public class Account {
 		return name;
 	}
 
-	public CategoryGroup getCategoryGroup() {
-		return categoryGroup;
+	public List<Category> getCategory() {
+		return category;
 	}
 
 	public void setUser(Users user) {
@@ -97,8 +96,11 @@ public class Account {
 		}
 	}
 
-	public void setCategoryGroup(CategoryGroup categoryGroup) {
-		this.categoryGroup = categoryGroup;
+	public void setCategory(Category category) {
+		this.category.add(category);
+		if(category.getAccount() != this) {
+			category.setAccount(this);
+		}
 	}
 
 	public void setName(String name) {

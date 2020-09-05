@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gongbu.bootJPA.domain.Account;
 import com.gongbu.bootJPA.domain.Category;
 import com.gongbu.bootJPA.service.CategoryService;
 
@@ -18,12 +19,22 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 	@PostMapping("/setCategory")
-	public Boolean setCategory(Category cat) {
-		return categoryService.setCategory(cat);
+	public void setCategory(Long accountId, Category category) {
+		categoryService.addCategory(accountId, category);
+	}
+	
+	@PostMapping("/getCategoryList")
+	public List<Category> getCategoryList(Account account) {
+		return categoryService.getCategoryList(account);
+	}
+	
+	@PostMapping("/deleteCategory")
+	public void deleteCategory(Category category) {
+		categoryService.deleteCategory(category);
 	}
 	
 	@PostMapping("/getCategory")
-	public List<Category> getCategory(String id) {
-		return categoryService.getCategoryList(id);
+	public Category getCategory(Long categoryId) {
+		return categoryService.getCategory(categoryId);
 	}
 }

@@ -4,27 +4,43 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.gongbu.bootJPA.domain.Account;
 import com.gongbu.bootJPA.domain.Category;
+import com.gongbu.bootJPA.repository.AccountRepository;
 import com.gongbu.bootJPA.repository.CategoryRepository;
 
-@Service("CategoryServie")
+@Service
+@Transactional
 public class CategoryService{
 
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	public List<Category> getCategoryList(String id) {
-		return null;//(List<Category>) categoryRepository.findById(id).orElse(new Category());
+	@Autowired
+	AccountRepository accountRepository;
+
+	public void addCategory(Long accountId, Category category) {
+		Account account = accountRepository.findById(accountId).get();
+		category.setAccount(account);
+		categoryRepository.save(category);
+	}
+	
+	public List<Category> getCategoryList(Account account) {
+		return categoryRepository.findByAccount(account);
+	}
+	
+	public void deleteCategory(Category category) {
+		categoryRepository.delete(category);
+	}
+	
+	public Category getCategory(Long categoryId) {
+		return categoryRepository.findById(categoryId).get();
+	}
+	
+	public void updateCategory(Category category) {
+		categoryRepository.save(category);
 	}
 
-	public Boolean setCategory(Category cat) {
-//		if(categoryRepository.findById(cat.getId()).orElse(new Category()) != null) {
-//			categoryRepository.save(cat);
-//			return true;
-//		} else {
-//			return null;
-//		}
-		return null;
-	}
 }
